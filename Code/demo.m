@@ -16,8 +16,9 @@ global resInfo
 global TrainTest
 global root
 
-% get current directory
-root = '/Users/armeentaeb/Desktop/ReservoirAnalysis';
+% get appropriate directory
+temp = pwd;
+root = temp(1:end-4);
 
 % addpath to reservoir data and info
 addpath(strcat(root,'/Data/Reservoirs'))
@@ -88,7 +89,7 @@ timePeriod = 1:size(DataYM,1); % start in January 2004 since snowpack data start
     TrainX = DataXM(TrainInd,:); % covariates training data
     TestX = DataXM(TestInd,:); % covariates validation data
     
-   PlotFigure2 = 0;
+   PlotFigure2 = 1;
    PlotFigure3 = 1;
    PlotFigure4 = 0;
    PlotFigure5 = 0;

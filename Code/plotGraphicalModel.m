@@ -7,7 +7,7 @@ global root
 %fn = fullfile(root, ...
  %               '/Desktop/ReservoirModeling/Code/PlotGraphicalModel',...
   %              'reservoir-summary.csv');
-fn = strcat(root,'Data/reservoir-summary.csv');
+fn = strcat(root,'Data/Reservoirs/reservoir-summary.csv');
   
 resv_all = readtable(fn, 'ReadRowNames', true);
 
