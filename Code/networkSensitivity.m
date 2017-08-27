@@ -25,6 +25,7 @@ reservoirAvergeNovember = avgMonthY(12,resInd);
  ProbEmptyPrp = zeros(length(PDSIv),kf);
  
 for i = 1:length(PDSIv)
+    i
     PDSIAdjusted = (avgMonthX(12,6)-PDSIv(i)); 
   for k = 1:kf 
       count = 0;

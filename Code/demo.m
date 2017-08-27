@@ -89,14 +89,15 @@ timePeriod = 1:size(DataYM,1); % start in January 2004 since snowpack data start
     TrainX = DataXM(TrainInd,:); % covariates training data
     TestX = DataXM(TestInd,:); % covariates validation data
     
-   PlotFigure2 = 1;
-   PlotFigure3 = 1;
+   PlotFigure2 = 0;
+   PlotFigure3 = 0;
    PlotFigure4 = 0;
    PlotFigure5 = 0;
-   PlotFigure6 = 0;
+   PlotFigure6 = 1;
    PlotFigure1Sup = 0;
    PlotFigure2Sup = 0;
    PlotFigure3Sup = 0;
+   PlotFigure4Sup = 1;
    PlotFigure2Response = 0;
    PlotFigure4Response = 1;
    
@@ -188,8 +189,8 @@ timePeriod = 1:size(DataYM,1); % start in January 2004 since snowpack data start
    correlationModified = latentVariableSemantics(lowRankLVGM2,TrainTest,6);
    
    % Conditional latent variable graphical modeling
-   TrainTest{3} = TrainX(:,6);
-   TrainTest{4} = TestX(:,6);
+   TrainTest{3} = TrainXa(:,6);
+   TrainTest{4} = TestXa(:,6);
    [precisionCond, lowRank, graphModel] = ObtainEstimate(TrainTest,Conditional_LVGM,[0.18,2.72]);
    [trainCondLVGM, testCondLVGM] = computeTrainValidationPerformance(precisionCond,Conditional_LVGM);
 
@@ -261,6 +262,12 @@ timePeriod = 1:size(DataYM,1); % start in January 2004 since snowpack data start
     networkSensitivity(precisionCond,avgMonthY,avgMonthX,varY,varX,resInd)
     end
     
+    if PlotFigure4Sup == 1
+    [val,ind] = sort(resInfo.cap,'descend');
+    s = length(find(val>1*10^8));
+    resInd = ind(setdiff((1:s),[22,33])); 
+    individualSensitivity(precisionCond,avgMonthY,avgMonthX,varY,varX,DataXM,resInd);
+    end
     
     if PlotFigure2Response == 1
        
